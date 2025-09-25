@@ -1,9 +1,11 @@
 let button = document.getElementById('btnUsers');
 let div = document.getElementById('out');
 
+// https://jsonplaceholder.typicode.com/posts/101
+
 button.addEventListener('click', function () {
     // Assíncrona Async Chaining
-    fetch('https://jsonplaceholder.typicode.com/posts/101')
+    fetch('https://catfact.ninja/fact')
         .then(function (response) {
             if (response.ok) {
                 return response.json();
