@@ -1,10 +1,11 @@
 let button = document.getElementById('btnUsers');
 let div = document.getElementById('out');
 
-// https://jsonplaceholder.typicode.com/posts/101
+let buttonDog = document.getElementById("btnDog");
+let div2 = document.getElementById("out2");
 
 button.addEventListener('click', function () {
-    // Assíncrona Async Chaining
+  
     fetch('https://catfact.ninja/fact')
         .then(function (response) {
             if (response.ok) {
@@ -20,8 +21,16 @@ button.addEventListener('click', function () {
         })
         .catch(function (error) {
             renderError(error);
-            // console.log(error);
         })
+});
+
+buttonDog.addEventListener("click", function () {
+    fetch("https://dog.ceo/api/breeds/image/random")
+        .then(res => res.json())
+        .then(json => {
+            let dog = Dog.fromRaw(json);
+            dog.renderFrom(div2);
+        });
 });
 
 function renderError(error) {
@@ -32,3 +41,13 @@ function renderError(error) {
 
     div.appendChild(h2);
 }
+
+function renderError(error) {
+    div2.innerHTML = "";
+
+    let h2 = document.createElement(`h2`);
+    h2.textContent = error;
+
+    div2.appendChild(h2);
+}
+
